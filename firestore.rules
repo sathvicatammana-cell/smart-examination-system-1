@@ -1,0 +1,91 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global deny-by-default safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        getUserData().role == 'admin'
+      );
+    }
+
+    function isInCharge() {
+      return isSignedIn() && getUserData().role == 'incharge';
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow update: if isOwner(userId) && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'uid'])) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Students Master Collection
+    match /students/{studentId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Rooms Collection
+    match /rooms/{roomId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Examinations Collection
+    match /examinations/{examId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Allocations Collection
+    match /allocations/{allocationId} {
+      allow get: if isAdmin() || isInCharge() || (isSignedIn() && resource.data.studentId == request.auth.uid && resource.data.published == true);
+      allow list: if isAdmin() || isInCharge() || (isSignedIn() && resource.data.studentId == request.auth.uid && resource.data.published == true);
+      allow write: if isAdmin();
+    }
+
+    // Attendance Records
+    match /attendance/{attendanceId} {
+      allow read: if isAdmin() || isInCharge();
+      allow write: if isAdmin() || isInCharge();
+    }
+
+    // Attendance Submissions
+    match /attendanceSubmissions/{submissionId} {
+      allow read: if isAdmin() || isInCharge();
+      allow write: if isAdmin() || isInCharge();
+    }
+
+    // Audit Logs
+    match /auditLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isSignedIn();
+      allow update, delete: if false;
+    }
+  }
+}

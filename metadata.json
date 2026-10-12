@@ -1,0 +1,6 @@
+{
+  "name": "Hallpass – Smart Examination Section Management System",
+  "description": "Full-stack university examination portal for exam setup, room allocation, attendance marking, absentee reporting, and student access.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

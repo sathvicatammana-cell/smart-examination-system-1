@@ -1,0 +1,207 @@
+{
+  "users": [
+    [
+      "admin_exam_officer",
+      {
+        "uid": "admin_exam_officer",
+        "email": "admin@university.edu",
+        "rollNumber": "ADMIN",
+        "name": "Controller of Examinations",
+        "role": "admin",
+        "department": "University Examination Section",
+        "createdAt": "2026-10-12T11:34:14.553Z"
+      }
+    ],
+    [
+      "usr_1791808471637",
+      {
+        "uid": "usr_1791808471637",
+        "email": "25eu10058@siddhartha.edu.in",
+        "rollNumber": "2501",
+        "name": "SATHVICA",
+        "role": "student",
+        "department": "Computer Science & Engineering",
+        "createdAt": "2026-10-12T12:34:33.378Z",
+        "year": "1st Year",
+        "section": "A"
+      }
+    ],
+    [
+      "usr_1791808515697",
+      {
+        "uid": "usr_1791808515697",
+        "email": "25eu10056@siddhartha.edu.in",
+        "rollNumber": "25EU10055",
+        "name": "SATHV",
+        "role": "admin",
+        "department": "University Examination Section",
+        "createdAt": "2026-10-12T12:35:16.343Z"
+      }
+    ],
+    [
+      "JRGwlEyxNDb0dAlnp8tG4GIWRI63",
+      {
+        "uid": "JRGwlEyxNDb0dAlnp8tG4GIWRI63",
+        "email": "sathvictammana@gmail.com",
+        "rollNumber": "25EU0000",
+        "name": "SATHVICA",
+        "role": "student",
+        "department": "Computer Science & Engineering",
+        "createdAt": "2026-10-12T12:40:56.198Z",
+        "year": "1st Year",
+        "section": "A"
+      }
+    ]
+  ],
+  "students": [
+    [
+      "student_1791808473990_l077",
+      {
+        "rollNumber": "2501",
+        "name": "SATHVICA",
+        "email": "25eu10058@siddhartha.edu.in",
+        "department": "Computer Science & Engineering",
+        "year": "1st Year",
+        "section": "A",
+        "createdAt": "2026-10-12T12:34:33.990Z"
+      }
+    ],
+    [
+      "student_1791808856480_davq",
+      {
+        "rollNumber": "25EU0000",
+        "name": "SATHVICA",
+        "email": "sathvictammana@gmail.com",
+        "department": "Computer Science & Engineering",
+        "year": "1st Year",
+        "section": "A",
+        "createdAt": "2026-10-12T12:40:56.480Z"
+      }
+    ]
+  ],
+  "examinations": [
+    [
+      "exam_ds",
+      {
+        "name": "Data Structures",
+        "type": "End-Semester",
+        "courseCode": "CS201",
+        "courseName": "Data Structures",
+        "examDate": "10 Oct 2026",
+        "session": "FN",
+        "department": "Computer Science & Engineering",
+        "year": "II Year",
+        "section": "A",
+        "status": "published",
+        "assignedRooms": [
+          "room_a101",
+          "room_b203"
+        ],
+        "assignedInCharges": [],
+        "createdAt": "2026-10-12T11:34:14.539Z"
+      }
+    ],
+    [
+      "exam_os",
+      {
+        "name": "Operating Systems",
+        "type": "End-Semester",
+        "courseCode": "CS202",
+        "courseName": "Operating Systems",
+        "examDate": "14 Oct 2026",
+        "session": "FN",
+        "department": "Computer Science & Engineering",
+        "year": "II Year",
+        "section": "A",
+        "status": "published",
+        "assignedRooms": [
+          "room_b203"
+        ],
+        "assignedInCharges": [],
+        "createdAt": "2026-10-12T11:34:14.542Z"
+      }
+    ],
+    [
+      "exam_dbms",
+      {
+        "name": "Database Management",
+        "type": "End-Semester",
+        "courseCode": "CS203",
+        "courseName": "Database Management",
+        "examDate": "18 Oct 2026",
+        "session": "AN",
+        "department": "Computer Science & Engineering",
+        "year": "II Year",
+        "section": "A",
+        "status": "published",
+        "assignedRooms": [
+          "room_c105"
+        ],
+        "assignedInCharges": [],
+        "createdAt": "2026-10-12T11:34:14.542Z"
+      }
+    ],
+    [
+      "exam_cn",
+      {
+        "name": "Computer Networks",
+        "type": "End-Semester",
+        "courseCode": "CS204",
+        "courseName": "Computer Networks",
+        "examDate": "22 Oct 2026",
+        "session": "FN",
+        "department": "Computer Science & Engineering",
+        "year": "II Year",
+        "section": "A",
+        "status": "published",
+        "assignedRooms": [
+          "room_a101"
+        ],
+        "assignedInCharges": [],
+        "createdAt": "2026-10-12T11:34:14.542Z"
+      }
+    ]
+  ],
+  "rooms": [
+    [
+      "room_a101",
+      {
+        "roomNumber": "A101",
+        "block": "Aryabhata Academic Block",
+        "capacity": 60,
+        "isAvailable": true
+      }
+    ],
+    [
+      "room_b203",
+      {
+        "roomNumber": "B203",
+        "block": "Aryabhata Academic Block",
+        "capacity": 40,
+        "isAvailable": true
+      }
+    ],
+    [
+      "room_c105",
+      {
+        "roomNumber": "C105",
+        "block": "Ramanujan Science Hall",
+        "capacity": 30,
+        "isAvailable": true
+      }
+    ],
+    [
+      "room_d201",
+      {
+        "roomNumber": "D201",
+        "block": "Ramanujan Science Hall",
+        "capacity": 50,
+        "isAvailable": true
+      }
+    ]
+  ],
+  "allocations": [],
+  "attendance": [],
+  "attendanceSubmissions": [],
+  "auditLogs": []
+}

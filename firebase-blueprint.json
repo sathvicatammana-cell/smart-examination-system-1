@@ -1,0 +1,159 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with university credentials and role",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "format": "email", "maxLength": 255 },
+        "rollNumber": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["admin", "incharge", "student"] },
+        "department": { "type": "string", "maxLength": 50 },
+        "year": { "type": "string", "maxLength": 10 },
+        "section": { "type": "string", "maxLength": 10 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "rollNumber", "name", "role", "createdAt"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student academic record enrolled in university",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "rollNumber": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "format": "email", "maxLength": 255 },
+        "department": { "type": "string", "maxLength": 50 },
+        "year": { "type": "string", "maxLength": 10 },
+        "section": { "type": "string", "maxLength": 10 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["rollNumber", "name", "email", "department", "year", "section"]
+    },
+    "Room": {
+      "title": "Room",
+      "description": "Examination hall or room with capacity limits",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "roomNumber": { "type": "string", "maxLength": 50 },
+        "block": { "type": "string", "maxLength": 50 },
+        "capacity": { "type": "number" },
+        "isAvailable": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["roomNumber", "block", "capacity", "isAvailable"]
+    },
+    "Examination": {
+      "title": "Examination",
+      "description": "University exam schedule and subject configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 150 },
+        "type": { "type": "string", "enum": ["Mid-Term", "End-Semester", "Supplementary", "Internal Assessment"] },
+        "courseCode": { "type": "string", "maxLength": 30 },
+        "courseName": { "type": "string", "maxLength": 150 },
+        "examDate": { "type": "string" },
+        "session": { "type": "string", "enum": ["FN", "AN"] },
+        "department": { "type": "string", "maxLength": 50 },
+        "year": { "type": "string", "maxLength": 10 },
+        "section": { "type": "string", "maxLength": 10 },
+        "status": { "type": "string", "enum": ["draft", "allocated", "published", "completed"] },
+        "assignedRooms": { "type": "string" },
+        "assignedInCharges": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "courseCode", "courseName", "examDate", "session", "department", "status"]
+    },
+    "Allocation": {
+      "title": "Allocation",
+      "description": "Student seat allocation in an exam room",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "examId": { "type": "string", "maxLength": 128 },
+        "studentId": { "type": "string", "maxLength": 128 },
+        "rollNumber": { "type": "string", "maxLength": 50 },
+        "studentName": { "type": "string", "maxLength": 100 },
+        "department": { "type": "string", "maxLength": 50 },
+        "roomId": { "type": "string", "maxLength": 128 },
+        "roomNumber": { "type": "string", "maxLength": 50 },
+        "seatNumber": { "type": "string", "maxLength": 50 },
+        "published": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["examId", "studentId", "rollNumber", "studentName", "roomId", "roomNumber", "seatNumber", "published"]
+    },
+    "AttendanceRecord": {
+      "title": "AttendanceRecord",
+      "description": "Individual student attendance status in an examination session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "examId": { "type": "string", "maxLength": 128 },
+        "roomId": { "type": "string", "maxLength": 128 },
+        "studentId": { "type": "string", "maxLength": 128 },
+        "rollNumber": { "type": "string", "maxLength": 50 },
+        "studentName": { "type": "string", "maxLength": 100 },
+        "seatNumber": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["present", "absent", "unmarked"] },
+        "markedBy": { "type": "string", "maxLength": 128 },
+        "markedAt": { "type": "string" }
+      },
+      "required": ["examId", "roomId", "studentId", "rollNumber", "status"]
+    },
+    "AttendanceSubmission": {
+      "title": "AttendanceSubmission",
+      "description": "Finalized attendance submission for a room by an in-charge",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "examId": { "type": "string", "maxLength": 128 },
+        "roomId": { "type": "string", "maxLength": 128 },
+        "roomNumber": { "type": "string", "maxLength": 50 },
+        "inChargeId": { "type": "string", "maxLength": 128 },
+        "inChargeName": { "type": "string", "maxLength": 100 },
+        "totalAllocated": { "type": "number" },
+        "presentCount": { "type": "number" },
+        "absentCount": { "type": "number" },
+        "submittedAt": { "type": "string" },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["examId", "roomId", "inChargeId", "totalAllocated", "presentCount", "absentCount", "submittedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "Authenticated user profiles"
+    },
+    "/students/{studentId}": {
+      "schema": { "$ref": "Student" },
+      "description": "Official student master records"
+    },
+    "/rooms/{roomId}": {
+      "schema": { "$ref": "Room" },
+      "description": "Examination rooms and capacities"
+    },
+    "/examinations/{examId}": {
+      "schema": { "$ref": "Examination" },
+      "description": "Examination schedules and metadata"
+    },
+    "/allocations/{allocationId}": {
+      "schema": { "$ref": "Allocation" },
+      "description": "Seat allocations per student and exam"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": { "$ref": "AttendanceRecord" },
+      "description": "Real-time attendance markers"
+    },
+    "/attendanceSubmissions/{submissionId}": {
+      "schema": { "$ref": "AttendanceSubmission" },
+      "description": "Finalized in-charge attendance sheets"
+    }
+  }
+}
